@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  rest_server:
+    image: maven:3.9.4-amazoncorretto-11-al2023
+    volumes:
+      - ../:/files
+    ports:
+      - "8900:8900"
+      - "3300:3300"
+    command: >
+      sh -c "cd /files &&
+      mvn -DskipTests=true package &&
+      java -jar ./target/quarkus-app/quarkus-run.jar"
